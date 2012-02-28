@@ -1,0 +1,41 @@
+= cucumber_off_rails
+
+Nondestructive cucumber testing without the rails stack.  Setup to work with the hudson/jenkins ci system to run regular tests on your project.  The capybara-mechanize gem is used to fetch remote sites and capybara bathcers are used to verify the data.
+
+This gem is currently in a very basic state, some ways away from even a 0.1.x release.  You will have to manually configure quite a bit to get everything working.  The most important parts are the capybara app and user login information in the support/env file.   Also take a look at the login steps in the support/hooks file.  They may need to be changed depending on the setup of your site.
+
+= install
+
+Run the installation generator
+
+    cucumber_off_rails install
+
+This will generate a basic cucumber environment in the folder cucumber_off_rails_project
+
+= future work
+
+* Fix the cucumber rake tasks
+* Add login support
+* Version the gems
+* Add support to specify the site in the generator
+* Setup javascript tests
+* Setup hudson support
+* Figure out why you have to manually include bindir in the gemspec
+* Reenable options generator
+* Add a directory option to options generator
+
+== Contributing to cucumber_off_rails
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2011 Jeremiah Hemphill. See LICENSE.txt for
+further details.
+
