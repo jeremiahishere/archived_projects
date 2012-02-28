@@ -1,0 +1,19 @@
+= link_to "Create New Website", new_website_path
+%div.content
+  %table
+    %tr
+      %th Name
+      %th URL
+      %th Pages
+      %th Search
+    - if @websites.length > 0
+      - @websites.each do |website|
+        %tr
+          %td= website.name
+          %td= website.url
+          %td= link_to "Pages", website_pages_path() + "?website=#{website.id}"
+          %td= link_to "Crawl", crawl_website_path(website)
+          %td
+            = form_tag(search_website_path(website), :method => "get") do
+              = text_field_tag(:search_string)
+              = submit_tag("Search")

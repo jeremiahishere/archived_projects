@@ -1,0 +1,19 @@
+%div.content
+  %table
+    %tr
+      %th Name
+      %th URL
+      %th Hits
+    - if @search_results.length > 0
+      - @search_results.each do |result|
+        %tr
+          %td
+            = result['name']
+          %td
+            %a{ :href => result['url'] } 
+              = result['url']
+          %td
+            = result['count']
+  - if @words_not_found.length > 0
+    Words Not Found:
+    = @words_not_found.join(', ')
