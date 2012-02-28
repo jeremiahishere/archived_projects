@@ -1,0 +1,19 @@
+<title>Schmorl Game Engine</title>
+
+<div class='container'>
+  <span id='game_engine'></span><br />
+  <span id='chat_history'></span><br />
+  <input type='text' id='console_input_text' value='Enter text here and press ender' />
+</div>
+
+<script type="text/javascript" src="spine.min.js"></script>
+<!--  not exactly sure where this file is -->
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="keys.js"></script>
+<script type="text/javascript" src="funcs.js"></script>
+<script type="text/javascript" src="/lib/modules/client.js"></script>
+<script>
+window.addEventListener('load', function()  {
+  client = Client.init(8080)
+}, false);
+</script>
