@@ -1,0 +1,20 @@
+%html{"xml:lang" => "en"}
+  %head
+    %meta{"charset" => "utf-8"}
+    %title Connect4K: a mmobg
+    %meta{"name" => "description", "content" => "Connect Four Thousand"}
+    %meta{"name" => "author", "content" => "Jeremiah Hemphill"}
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+  %body.application
+    .container
+      = render :partial => "/shared/user_login_state"
+      %h1
+        Connect Four Thousand 
+      = render :partial => "/shared/navigation"
+      %p{"class" => "notice"}
+        = notice
+      %p{"class" => "alert"}
+        = alert
+      = yield

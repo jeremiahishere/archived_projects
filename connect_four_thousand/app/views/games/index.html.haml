@@ -1,0 +1,29 @@
+%h1 Listing Games
+
+%table
+  %tr
+    %th Name
+    %th User
+    %th Show
+    %th Edit
+    %th Destroy
+    %th Tokens
+  - @games.each do |game|
+    %tr
+      %td= game.name
+      %td= game.user.name
+      %td
+        - if game.has_permission?(current_user, "show")
+          = link_to "Show", game_path(game)
+      %td
+        - if game.has_permission?(current_user, "edit")
+          = link_to "Edit", edit_game_path(game)
+      %td
+        - if game.has_permission?(current_user, "full")
+          = link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = render :partial => "tokens/generate_token", :locals => {:game => game }
+
+= link_to "New Display Graph", new_game_path
+
+

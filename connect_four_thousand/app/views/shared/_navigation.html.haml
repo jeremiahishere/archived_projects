@@ -1,0 +1,7 @@
+- if user_signed_in?
+  %ul{"class" => "tabs"}
+    %li= link_to "Home", root_path
+    - if can? :read, User
+      %li= link_to "Manage Users", users_path
+    - if can? :read, Game
+      %li= link_to "Manage Games", games_path 

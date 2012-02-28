@@ -1,0 +1,24 @@
+%p
+  %b Name
+  = @game.name
+%p
+  %b In Progress
+  = @game.in_progress
+%p
+  %b Public
+  = @game.public
+%p
+  %b Users
+  %table
+    %tr
+      %th Name
+      %th Permission level
+    - @game.game_permissions.each do |perm|
+      %tr
+        %td= perm.user.name
+        %td= perm.permission_level
+  %hr
+
+= link_to 'Edit', edit_game_path(@game)
+\|
+= link_to 'Back', games_path

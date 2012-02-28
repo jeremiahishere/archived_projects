@@ -1,0 +1,12 @@
+%html{"xml:lang" => "en"}
+  %head
+    %meta{"charset" => "utf-8"}
+    %title Graph Reviewer Ly
+    %meta{"name" => "description", "content" => "Graph Reviewer Ly"}
+    %meta{"name" => "author", "content" => "Jeremiah Hemphill"}
+    = stylesheet_link_tag "full_screen"
+    = javascript_include_tag "full_screen"
+    = csrf_meta_tag
+  %body
+    = yield
+
