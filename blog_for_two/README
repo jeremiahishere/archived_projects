@@ -1,0 +1,16 @@
+Blog For Two
+
+Create posts about events and let other writers tell their story too.
+
+To Do:
+- Fix the posts controller
+  - only need access for debugging problems (admin only)
+- Add image uploading attached to posts
+  - create a post image model with paperclip attachments
+  - add nested model javascript to create multiple photos
+- Add your events page
+  - list events that you have not posted on
+  - list events that other people have recently posted on
+- Major graphical overhaul
+  - turn it purple
+  - style the event_posts partial to a blog format

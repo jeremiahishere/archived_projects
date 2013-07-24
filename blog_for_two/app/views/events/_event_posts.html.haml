@@ -1,0 +1,15 @@
+%p
+  %b Name
+  = event.name
+%p
+  %b Time
+  = event.start_at
+  - if event.end_at.present?
+    to
+    @event.end_at
+
+- event.posts.each do |post|
+  .post
+    %h4= post.writer.name + "'s Story"
+    = post.post
+

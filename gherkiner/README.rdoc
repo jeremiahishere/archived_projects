@@ -1,0 +1,15 @@
+Quick and dirty app to help write Gherkin features for the QA team.
+
+Installation instructions
+
+    bundle install --path=vendor/bundle
+    bundle exec rails s
+
+Usage
+
+    Go to http://localhost:3000
+    Create a new project
+      The project path should be the absolute path to the features folder in a project on your computer
+      For example /Users/MyName/projects/MyProject/features
+    Go to the features page for the project
+    Start editing features

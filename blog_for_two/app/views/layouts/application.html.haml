@@ -1,0 +1,16 @@
+!!!
+
+%html
+  %head
+    %title Blog For Two
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+  %body
+    .container
+      = render :partial => "/shared/user_login_state"
+      %h1 Blog For Two
+      = render :partial => "/shared/navigation"
+      %p.notice= notice
+      %p.alert= alert
+      = yield

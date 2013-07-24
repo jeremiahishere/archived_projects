@@ -1,0 +1,73 @@
+<%= form_for [@project, @feature] do |f| %>
+  <% if @feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feature.errors.count, "error") %> prohibited this feature from being saved:</h2>
+
+      <ul>
+      <% @feature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contents %><br>
+    <div class='textarea-wrapper'>
+      <%= f.text_area(:contents, {:rows => 40, :cols => 120, :style => 'tab-size: 2;-moz-tab-size: 2; -o-tab-size: 2;'}) %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $("#feature_contents").textcomplete([
+      {
+        match: /(.{2,})$/,
+        search: function (term, callback) {
+          regex = /^(\s*)/
+          matches = regex.exec(term)
+          tab_level = matches[0]
+
+          $.get('/projects/<%= @project.id %>/features/suggestions', 'line=' + term, function(words) {
+            callback($.map(words, function(word) {
+              return tab_level + word;
+            }));
+          })
+        },
+        replace: function (word) {
+          return word + '\n';
+        },
+        template: function(word) {
+          return '<span>' + word + '</span>'
+        },
+        index: 1
+      }
+    ]);
+
+    $("#feature_contents").keydown(function(e) {
+        if(e.keyCode === 9) { // tab was pressed
+            // get caret position/selection
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+
+            var $this = $(this);
+            var value = $this.val();
+
+            // set textarea value to: text before caret + tab + text after caret
+            $this.val(value.substring(0, start)
+                        + "\t"
+                        + value.substring(end));
+
+            // put caret at right position again (add one for the tab)
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            e.preventDefault();
+        }
+    });
+  });
+</script>

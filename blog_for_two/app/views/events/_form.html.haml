@@ -1,0 +1,11 @@
+= semantic_form_for @event do |form|
+  = form.semantic_errors
+  = form.inputs do
+    = form.input :name, :input_html => { :size => 100 }
+    = form.input :public, :as => :radio
+    = form.input :start_at
+    = form.input :end_at
+    = form.fields_for :posts, @user_post do |post_form|
+      = post_form.input :writer_id, :as => :hidden
+      = post_form.input :post, :as => :text, :label => "Your Story", :input_html => { :cols => 100 }
+  = form.actions

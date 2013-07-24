@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Question Answers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Player</th>
+      <th>Number of votes</th>
+      <th>Percentage of votes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question_answers.each do |question_answer| %>
+      <tr>
+        <td><%= question_answer.question_id %></td>
+        <td><%= question_answer.player_id %></td>
+        <td><%= question_answer.number_of_votes %></td>
+        <td><%= question_answer.percentage_of_votes %></td>
+        <td><%= link_to 'Show', question_answer %></td>
+        <td><%= link_to 'Edit', edit_question_answer_path(question_answer) %></td>
+        <td><%= link_to 'Destroy', question_answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question Answer', new_question_answer_path %>

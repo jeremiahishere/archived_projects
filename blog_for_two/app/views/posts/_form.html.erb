@@ -1,0 +1,11 @@
+<%= semantic_form_for @post do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :event_id %>
+    <%= f.input :writer_id %>
+    <%= f.input :post %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

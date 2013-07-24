@@ -1,0 +1,49 @@
+We are playing the game
+
+<% if @room.host == @current_player.alias %>
+  <p>
+  You are the host
+  </p>
+  <% if @room.status.nil? || @room.status == ""  || @room.status == "finished" %>
+    <%= button_to "Start game", room_start_game_path(@room), remote: true %>
+  <% end %>
+<% end %>
+
+<p>
+You are: <%= @current_player.alias %>
+</p>
+
+<p>
+Players:
+  <ul>
+    <% @players.each do |player| %>
+      <li><%= player.alias %></li>
+    <% end %>
+  </ul>
+</p>
+
+<div id="game_area">
+  Loading Game ...
+</div>
+
+<script>
+$(document).ready(function() {
+  var status = "no status found"
+
+  function gameTick() {
+    console.log("running game tick")
+    $.get("/rooms/<%=@room.id%>/check_status", {}, function(status) {
+      if(status == "ask_for_questions") {
+        console.log("asking for questions")
+      } else {
+        console.log("unknown status")
+      }
+    })
+  }
+
+  gameTick()
+  setInterval(function() {
+    gameTick()
+  }, 5000)
+})
+</script>

@@ -1,0 +1,15 @@
+tmp/**/*
+log/*.log
+*.swp
+/db/development_structure.sql
+*.orig
+*.rej
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*.orig
+public/stylesheets/compiled/
+public/assets/
+.sass-cache/
+/public/system/
