@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Hello_metronomeActivity!</string>
+    <string name="app_name">Hello Metronome</string>
+    <string name="start_stop">Start/Stop</string>
+    <string name="quarter">\u2669</string>
+    <string name="eighth">\u266B</string>
+    <string name="sixteenth">\u266C</string>
+    <string name="triplet">3:1</string>
+    <string name="bpm">bpm</string>
+    <string name="defaultBpm">60</string>
+
+</resources>

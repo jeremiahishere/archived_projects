@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <SeekBar
+        android:id="@+id/bpm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:max="250" />
+
+    <TextView
+        android:id="@+id/bpmDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bpm"
+        android:layout_centerHorizontal="true"
+        android:text="@string/defaultBpm"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="120dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/bpmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bpm"
+        android:layout_alignBottom="@+id/bpm"
+        android:layout_toRightOf="@+id/bpm"
+        android:text="@string/bpm"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bpm"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/quarterNoteSoundToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quarter" />
+
+        <ToggleButton
+            android:id="@+id/eighthNoteSoundToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eighth" />
+
+        <ToggleButton
+            android:id="@+id/sixteenthNoteSoundToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sixteenth" />
+
+        <ToggleButton
+            android:id="@+id/tripletSoundToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/triplet" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/toggleStartStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
+        android:text="@string/start_stop" />
+
+</RelativeLayout>

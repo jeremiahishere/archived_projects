@@ -1,0 +1,105 @@
+general
+- all scripts have the following parameters
+  - warn
+  - critical
+  - timeout
+    - automatically stops the script after a number of seconds
+
+check_memory - FINISHED
+- parameters
+  - --warn
+    - default: 90
+  - --critical
+    - default: 95
+- process
+  - run free and check if the percentage of used memory is greater than the warn/critical levles
+- outputs
+  - running: OK - free system memory: XXXMB
+  - warning: WARNING - ...
+  - critical:
+  - unknown:
+
+check_mysql - Finished
+- parameters
+  - user
+  - password
+  - host
+  - database
+  - no warn/critical params
+- process
+  - connect to the server
+  - do a show tables on the database and expect more than one table
+  - run 1234 + 5678 sql query to make sure sql works
+  - if anything fails, return critical, otherwise return an ok
+- outputs
+  - running:
+  - critical: Mysql problem: (no db, no tables, query failed)
+
+check_disk - FINISHED
+- parameters
+  - warn: percentage of disk used space maximum
+    - default: 75
+  - critical
+    - default: 85
+- process
+  - run df, check the Use% field is greater than warn/critical for every disk
+    - ignore tmpfs
+- outputs
+  - message: OK/WARNING/CRITICAL - /dev/md3: x%, /dev/sda1: x%
+
+check_ssh - POSTPONED
+- parameters
+  - user
+  - host
+- process
+  - ssh in and look for a password prompt
+  - potentially add warn/critical levels for number of seconds befor reachin the password prompt
+  - look for: 'Permission denied (publickey).'
+- outputs
+  - critical: CRITICAL - no password prompt detected
+
+check_http - FINISHED
+- parameters
+  - host
+  - string: unique string to search for
+  - path extension: anything after the slash
+- process
+  - curl the host/path and look for the string
+    - error on a response that isn't a 200, or a missing string
+- outputs
+  - critical: Site responded with <response code>, Search string could not be found
+
+check_dns - FINISHED
+- paramers
+  - url
+  - warn
+    - default: 90
+  - critical
+    - default: 10
+- proccess
+  - runs whois on the url and check if it is less than the minimum days before renewal
+- outputs
+  - "RUNNING - the url expires in more than <warning> days"
+  - warning/critical: "WARNING - the url expires in X days
+
+
+check_https_expires - FINISHED
+  checks to make sure ssl cert isn't expired
+    warning at 90 days from expiry
+      critical at 30 days out
+- parameters
+  - url
+  - warn
+    - default: 90 days
+  - critical
+    - default: 30 days
+- process
+  - run on uff.us server:
+    openssl x509 -noout -in /srv/www/uff.us/ssl/uff.us.crt -dates
+  - the output should match these lines:
+    notBefore=Dec 13 19:33:05 2011 GMT
+    notAfter=Dec 15 21:36:11 2012 GMT
+  - convert to dates and check against the warn/critical levesl
+- outputs
+  - "RUNNING - https expires in more than <warning> days"
+  - "WARNING/CRITICAL - https expires in X days"

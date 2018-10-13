@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/start" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/dBProgressBarOutput"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/start"
+        android:layout_alignParentLeft="true"
+        android:max="@string/dBMaxLevel" />
+
+    <TextView
+        android:id="@+id/dBLabelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dBProgressBarOutput"
+        android:layout_alignRight="@+id/start"
+        android:text="@string/dBLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/dBText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dBLabelText"
+        android:layout_alignBottom="@+id/dBLabelText"
+        android:layout_alignLeft="@+id/start"
+        android:text="@string/dBDefault"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+</RelativeLayout>

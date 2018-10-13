@@ -1,0 +1,70 @@
+<%= form_for [:admin, @blog_post] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages",
+             :locals => {
+               :object => f.object,
+               :include_object_name => true
+             } %>
+
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title, :class => 'larger widest' -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :total_hours_wasted -%>
+    <%= f.text_field :total_hours_wasted, :class => 'larger widest' -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :body -%>
+    <%= f.text_area :body, :rows => 20, :class => 'wymeditor widest' -%>
+  </div>
+  <div id='more_options_field'>
+    <p>
+      <%= link_to t('.advanced_options'), "#",
+                  :id => 'toggle_advanced_options',
+                  :title => t('.toggle_advanced_options') %>
+    </p>
+    <span id='draft_field'>
+      <%= f.check_box :draft %>
+      <%= f.label :draft, t('.save_as_draft'), :class => "stripped" %>
+    </span>
+  </div>
+  <div id='more_options' style="display:none;">
+    <div class="hemisquare">
+      <h3><%= t('admin.blog.submenu.categories.title') %></h3>
+      <ul class='blog_categories'>
+        <% @blog_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'blog_post[category_ids][]', category.id,
+                               @blog_post.categories.include?(category),
+                               :id => (id="blog_post_category_ids_#{category.id}") %>
+             <%= label_tag 'blog_post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
+          </li>
+        <% end %>
+      </ul>
+      <h3><%= t('admin.blog.posts.form.published_at') %></h3>
+      <%= f.datetime_select :published_at %>
+    </div>
+    <div class='hemisquare right_side'>
+    </div>
+  </div>
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => true,
+                :delete_title => t('admin.blog.posts.post.delete')
+              } %>
+<% end -%>
+
+<% if Refinery.version < '0.9.9' %>
+  <% content_for :head do %>
+    <%= render :partial => 'form.css' %>
+    <%= render :partial => 'form.js' %>
+  <% end %>
+<% else %>
+  <% content_for :stylesheets, render(:partial => 'form.css') -%>
+  <% content_for :javascripts, render(:partial => 'form.js') -%>
+<% end %>
